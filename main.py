@@ -1,13 +1,48 @@
 import random
+from random import randint
+from time import sleep
 
-def hpCheck():
-    global hp
+def hpCheck(hp):
     if hp <= 0:
-        print("you died..")
-        quit()
+        return True
+    else:
+        return False
+
+
+
+
+def combat():
+    global hp, playermaxDmg, playerminDmg, enemyDmg,enemyhp
+
+
+    combat = True
+    while combat:
+        sleep(1)
+        print(f"You have {hp} HP left. The enemy has {enemyhp} HP left.")
+    
+        if randint(0,100) < hitChance:
+            dmg = randint(playerminDmg, playermaxDmg)
+            enemyhp -= dmg
+            print(f"You did {dmg} to the enemy, the enemy now has {enemyhp} HP.")
+        else:print("You missed.")
+            
+        if hpCheck(enemyhp):
+            print("Enemy is dead")
+            combat = False
+    
+        if hpCheck(hp):
+            print("You died")
+            combat = False
+
+
 
 hp = 100
+enemyhp = 100
+playerminDmg = 5
+playermaxDmg = 20
+hitChance = 90 # hit chance in percent
 
+enemyDmg = randint(10,20)
 
 print("you are holding a speech in front of a whole nation.")
 print("you are looking around..")
@@ -51,15 +86,25 @@ if kill == "1":
     again = input("do you want to try again? yes -- no -->" )
     if again == "yes":
         print("you manged to kill him mission compleated")
+        print("you go back stage and try to recover")
+        print("three guys in skimask come out and hold you hostage")
+        print("they are telling you to not resist and if you do your going to get it")
+        resist = input("do you want to resist and try to ascape?yes or no?--> ")
+        if resist == "yes":
+            print("you have tried and got you hands free")
+            fight = input("do you want to fight them?-->" )
+            if fight == "yes":
+                combat()
+
     if again == "no":
         print("he did more damage and more people was killed.")
 
 
-if again == "yes":
-    print("you go back stage and try to recover")
-    print("three guys in skimask come out and hold you hostage")
-    print("they are telling you to not resist and if you do your going to get it")
-    input("do you want to resist and try to ascape?--> ")
+
+    
+            
+
+
 
 
 
