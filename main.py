@@ -3,7 +3,7 @@ from random import randint
 from time import sleep
 
 def hpCheck(hp):
-    if hp <= 0:
+    if hp < 0:
         return True
     else:
         return False
@@ -19,16 +19,26 @@ def combat():
     while combat:
         sleep(1)
         print(f"You have {hp} HP left. The enemy has {enemyhp} HP left.")
-    
+
+        # player attack
         if randint(0,100) < hitChance:
             dmg = randint(playerminDmg, playermaxDmg)
             enemyhp -= dmg
             print(f"You did {dmg} to the enemy, the enemy now has {enemyhp} HP.")
-        else:print("You missed.")
+        else:
+            print("You missed.")
             
         if hpCheck(enemyhp):
             print("Enemy is dead")
             combat = False
+        
+        # enemy attack
+        if randint(0,100) < enemyHitchance:
+            enemyDmg = randint(10, 20)
+            hp -=  enemyDmg
+            print(f"he did {enemyDmg} to you, you have no {hp} HP left.")
+        else:
+            print("you are dead")    
     
         if hpCheck(hp):
             print("You died")
@@ -41,7 +51,7 @@ enemyhp = 100
 playerminDmg = 5
 playermaxDmg = 20
 hitChance = 90 # hit chance in percent
-
+enemyHitchance = 70
 enemyDmg = randint(10,20)
 
 print("you are holding a speech in front of a whole nation.")
@@ -61,8 +71,7 @@ elif safe == "b":
     print("your almost guaranteed too be brain damaged!")
     hp -= random.randint(85, 100)
     print("you have",hp,"hp!")
-    hpCheck()
-
+    hpCheck(hp)
 
 print("all the bodyguards jumped in and you came out somehow alive")
 print("do you want to execute the assasin")
