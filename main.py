@@ -95,9 +95,21 @@ if kill == "1":
             fight = input("do you want to fight them?-->" )
             if fight == "yes":
                 combat()
+        elif resist == "no": 
+            print("you are getting blindfolded and wrapped, you are getting shipped to a unknown place")
+            print("you fell asleep..")
+            print(".")
+            print("..")
+            print("...")
+            print("you are getting woken up by a loud voice, and banging on the car door")
+            print("someone grabbed you and lifted you on their shoulder")
+            print("you are getting carried too some place!")
+            
 
-    if again == "no":
-        print("he did more damage and more people was killed.")
+
+
+   
+ 
 
 
 
