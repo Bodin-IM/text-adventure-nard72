@@ -1,7 +1,7 @@
 import random
 from random import randint
 from time import sleep
-
+import time
 def hpCheck(hp):
     if hp < 0:
         return True
@@ -19,7 +19,7 @@ def combat():
     while combat:
         sleep(1)
         print(f"You have {hp} HP left. The enemy has {enemyhp} HP left.")
-
+        
         # player attack
         if randint(0,100) < hitChance:
             dmg = randint(playerminDmg, playermaxDmg)
@@ -31,21 +31,36 @@ def combat():
         if hpCheck(enemyhp):
             print("Enemy is dead")
             combat = False
-        
+            break
+        input()
         # enemy attack
         if randint(0,100) < enemyHitchance:
             enemyDmg = randint(10, 20)
             hp -=  enemyDmg
-            print(f"he did {enemyDmg} to you, you have no {hp} HP left.")
+            print(f"he did {enemyDmg} to you, you have now {hp} HP left.")
         else:
             print("you are dead")    
-    
+        
         if hpCheck(hp):
             print("You died")
             combat = False
+            break
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+money = 100000
 hp = 100
 enemyhp = 100
 playerminDmg = 5
@@ -53,6 +68,42 @@ playermaxDmg = 20
 hitChance = 90 # hit chance in percent
 enemyHitchance = 70
 enemyDmg = randint(10,20)
+
+
+def slow_print(text, delay=0.002):
+    """Function to simulate typing text gradually."""
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()
+
+
+
+def room1():
+    print("you enter a cold and empty room")
+    print("you see a chest in the middle of the room")
+    open = input("do you want to open it?y/n--> ")
+    if open == "yes":
+        print("its so dark you can bearly see whats in it")
+
+
+
+slow_print(""" ____  ____     ___  _____ ____  ___      ___  ____   ______     
+|    \|    \   /  _]/ ___/|    ||   \    /  _]|    \ |      |    
+|  o  )  D  ) /  [_(   \_  |  | |    \  /  [_ |  _  ||      |    
+|   _/|    / |    _]\__  | |  | |  D  ||    _]|  |  ||_|  |_|    
+|  |  |    \ |   [_ /  \ | |  | |     ||   [_ |  |  |  |  |      
+|  |  |  .  \|     |\    | |  | |     ||     ||  |  |  |  |      
+|__|  |__|\_||_____| \___||____||_____||_____||__|__|  |__|      
+                                                                 
+  _____ ____  ___ ___  __ __  _       ____  ______   ___   ____  
+ / ___/|    ||   |   ||  |  || |     /    ||      | /   \ |    \ 
+(   \_  |  | | _   _ ||  |  || |    |  o  ||      ||     ||  D  )
+ \__  | |  | |  \_/  ||  |  || |___ |     ||_|  |_||  O  ||    / 
+ /  \ | |  | |   |   ||  :  ||     ||  _  |  |  |  |     ||    \ 
+ \    | |  | |   |   ||     ||     ||  |  |  |  |  |     ||  .  |
+  \___||____||___|___| \__,_||_____||__|__|  |__|   \___/ |__|\_|
+""")
 
 print("you are holding a speech in front of a whole nation.")
 print("you are looking around..")
@@ -83,22 +134,15 @@ kill = input("--> ")
 if kill == "1":
     print("one of your bodyguard tried to kill him")
     print("mission failed")
-
-elif kill == "2":
-    print("you let him live")
-    print("more damge was done and more people died...")
-
-
-
-
-if kill == "1":
     again = input("do you want to try again? yes -- no -->" )
     if again == "yes":
         print("you manged to kill him mission compleated")
         print("you go back stage and try to recover")
         print("three guys in skimask come out and hold you hostage")
         print("they are telling you to not resist and if you do your going to get it")
+    
         resist = input("do you want to resist and try to ascape?yes or no?--> ")
+ 
         if resist == "yes":
             print("you have tried and got you hands free")
             fight = input("do you want to fight them?-->" )
@@ -113,6 +157,32 @@ if kill == "1":
             print("you are getting woken up by a loud voice, and banging on the car door")
             print("someone grabbed you and lifted you on their shoulder")
             print("you are getting carried too some place!")
+            print("you here a radio that are saying")
+            print("The president are getting kidnapped and if someone find him and deliver him alive reward of 9 000$")
+
+            
+    if again == "no":
+        print("you didn't do anything to stop him")
+        print("but he is after you and he offer you to fight like real man")
+        sniper = input("do you want to fight him-->  ")
+        if sniper == "yes":
+            combat()
+
+        elif sniper == "no":
+            print("you are a pussy")    
+
+elif kill == "2":
+    print("you let him live")
+    print("more damge was done and more people died...")
+
+
+
+
+
+
+
+
+   
             
 
 
